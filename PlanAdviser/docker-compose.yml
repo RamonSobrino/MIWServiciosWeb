@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  planadviser.citiesservice:
+    image: ${DOCKER_REGISTRY-}planadvisercitiesservice
+    ports:
+      - 9090:80
+    build:
+      context: .\PlanAdviser.Data
+      dockerfile: Dockerfile
