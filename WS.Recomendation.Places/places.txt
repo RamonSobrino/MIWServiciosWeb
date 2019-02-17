@@ -1,10 +1,1 @@
-key=AIzaSyBkHtuofALt_MdQrdiOCkLxm_HhJ_EEHJ4
-
-https://maps.googleapis.com/maps/api/place/nearbysearch/json?
-location=43.3619145,-5.8493887
-&radius=1500
-&type=restaurant
-&keyword=cruise
-&key=AIzaSyBkHtuofALt_MdQrdiOCkLxm_HhJ_EEHJ4
-
-http://localhost:8080/WS.Recomendation.Places/soapws/v1?wsdl
+http://156.35.95.51:8080/WS.Recomendation.Places/soapws/v1?wsdl
