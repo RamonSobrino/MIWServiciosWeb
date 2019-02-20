@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://WS.Recomendation.Data.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://WS.Recomendation.Data.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://WS.Recomendation.Data.org/">
+      <s:element name="GetAllCities">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllCitiesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllCitiesResult" type="tns:ArrayOfCity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="City" nillable="true" type="tns:City" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="City">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Latitude" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Longitude" nillable="true" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="Weather5Days" type="tns:ArrayOfCityWeather" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCityWeather">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CityWeather" nillable="true" type="tns:CityWeather" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CityWeather">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Temperature" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Humidity" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetDistancesByOriginCityId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="originCityId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDistancesByOriginCityIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDistancesByOriginCityIdResult" type="tns:ArrayOfDistance" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDistance">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Distance" nillable="true" type="tns:Distance" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Distance">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="OriginCityId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DestinationCityId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DistanceInKm" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetDistancesByDestinationCityId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="originCityId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDistancesByDestinationCityIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDistancesByDestinationCityIdResult" type="tns:ArrayOfDistance" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetAllCitiesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllCities" />
+  </wsdl:message>
+  <wsdl:message name="GetAllCitiesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllCitiesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDistancesByOriginCityIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDistancesByOriginCityId" />
+  </wsdl:message>
+  <wsdl:message name="GetDistancesByOriginCityIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDistancesByOriginCityIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDistancesByDestinationCityIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDistancesByDestinationCityId" />
+  </wsdl:message>
+  <wsdl:message name="GetDistancesByDestinationCityIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDistancesByDestinationCityIdResponse" />
+  </wsdl:message>
+  <wsdl:portType name="DataServiceSoap">
+    <wsdl:operation name="GetAllCities">
+      <wsdl:input message="tns:GetAllCitiesSoapIn" />
+      <wsdl:output message="tns:GetAllCitiesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDistancesByOriginCityId">
+      <wsdl:input message="tns:GetDistancesByOriginCityIdSoapIn" />
+      <wsdl:output message="tns:GetDistancesByOriginCityIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDistancesByDestinationCityId">
+      <wsdl:input message="tns:GetDistancesByDestinationCityIdSoapIn" />
+      <wsdl:output message="tns:GetDistancesByDestinationCityIdSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DataServiceSoap" type="tns:DataServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAllCities">
+      <soap:operation soapAction="http://WS.Recomendation.Data.org/GetAllCities" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDistancesByOriginCityId">
+      <soap:operation soapAction="http://WS.Recomendation.Data.org/GetDistancesByOriginCityId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDistancesByDestinationCityId">
+      <soap:operation soapAction="http://WS.Recomendation.Data.org/GetDistancesByDestinationCityId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DataServiceSoap12" type="tns:DataServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAllCities">
+      <soap12:operation soapAction="http://WS.Recomendation.Data.org/GetAllCities" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDistancesByOriginCityId">
+      <soap12:operation soapAction="http://WS.Recomendation.Data.org/GetDistancesByOriginCityId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDistancesByDestinationCityId">
+      <soap12:operation soapAction="http://WS.Recomendation.Data.org/GetDistancesByDestinationCityId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DataService">
+    <wsdl:port name="DataServiceSoap" binding="tns:DataServiceSoap">
+      <soap:address location="http://156.35.98.19/WS.Recomendation.Data/DataService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DataServiceSoap12" binding="tns:DataServiceSoap12">
+      <soap12:address location="http://156.35.98.19/WS.Recomendation.Data/DataService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
