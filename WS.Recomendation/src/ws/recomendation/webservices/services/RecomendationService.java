@@ -21,28 +21,41 @@ public class RecomendationService {
 		return new Place(r.getPlace(), r.getAddress(), r.getRating());
 	}
 
-	public List<CityRecomendation> getRecommendations(int originCityId) {
+	public List<CityRecomendation> getRecommendations(int originCityId, int numberOfCitiesToReturn,
+			RecomendationType type) {
 
-		List<City> closeCities = citiesService.getClosestCitiesWithWeatcher(originCityId, 3).getCity();
+		if (numberOfCitiesToReturn == 0) {
+			numberOfCitiesToReturn = 3;
+		}
+
+		List<City> closeCities = citiesService.getClosestCitiesWithWeatcher(originCityId, numberOfCitiesToReturn)
+				.getCity();
 
 		List<RecomendationType> types = new ArrayList<RecomendationType>();
-		types.add(RecomendationType.MUSEUM);
+		if (type != null) {			
+			types.add(type);
+		}
 
 		List<CityRecomendation> result = new ArrayList<CityRecomendation>();
 
-		Request request = new Request();
 		List<Recomendation> recomendations = new ArrayList<Recomendation>();
 		for (City city : closeCities) {
-			request = new Request();
+			CityRecomendation cityRecomendation = new CityRecomendation();
+			cityRecomendation.setCityId(city.getId());
+			cityRecomendation.setCityName(city.getName());
+			cityRecomendation.setLatitude(city.getLatitude());
+			cityRecomendation.setLongitude(city.getLongitude());
+			cityRecomendation.setWeather5Days(city.getWeather5Days().getCityWeather());
+			
+			Request request = new Request();
 			request.setLat(city.getLatitude());
 			request.setLon(city.getLongitude());
+			request.getTypes().addAll(types);
 			recomendations = new RecomendationWSService().getRecomendationWSPort().find(request);
 			for (Recomendation r : recomendations) {
-				CityRecomendation cityRecomendation = new CityRecomendation();
-				cityRecomendation.setCity(city.getName());
 				cityRecomendation.getPlaces().add(new Place(r.getPlace(), r.getAddress(), r.getRating()));
-				result.add(cityRecomendation);
 			}
+			result.add(cityRecomendation);
 		}
 
 		return result;

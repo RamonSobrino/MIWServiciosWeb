@@ -3,30 +3,66 @@ package ws.recomendation.webservices.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import ws.recomendation.webservices.services.cities.CityWeather;
 
 @XmlRootElement(name = "recomendation")
 public class CityRecomendation {
 
-	private String city;
-	private List<Place> places;
+	private Integer cityId;
+	private String cityName;
+	private Double latitude;
+	private Double longitude;
+	private List<Place> places = new ArrayList<Place>();
+	private List<CityWeather> weather5Days = new ArrayList<>();
 
-	@XmlElement
-	public String getCity() {
-		return city;
+	public Integer getCityId() {
+		return cityId;
 	}
 
-	public void setCity(String city) {
-		this.city = city;
+	public void setCityId(Integer cityId) {
+		this.cityId = cityId;
 	}
 
-	@XmlElement(name = "places")
+	public String getCityName() {
+		return cityName;
+	}
+
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
+	}
+
+	public Double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
+	}
+
+	public Double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
+	}
+
 	public List<Place> getPlaces() {
-		if (places == null) {
-			places = new ArrayList<Place>();
-		}
 		return places;
+	}
+
+	public void setPlaces(List<Place> places) {
+		this.places = places;
+	}
+
+	public List<CityWeather> getWeather5Days() {
+		return weather5Days;
+	}
+
+	public void setWeather5Days(List<CityWeather> weather5Days) {
+		this.weather5Days = weather5Days;
 	}
 
 }
