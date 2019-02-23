@@ -13,6 +13,7 @@ namespace WS.Recomendation.Web.Controllers
         public ActionResult Index()
         {
             ViewBag.Cities = service.GetCities();
+            ViewBag.Types = service.GetTypes();
             return View();
         }
 

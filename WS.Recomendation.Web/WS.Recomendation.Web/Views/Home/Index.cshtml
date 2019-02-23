@@ -13,7 +13,7 @@
             <div class="col-lg-offset-1 col-lg-5">
                 <label for="select-city">Origin city</label>
                 <select id="select-city" class="form-control" name="cityId">
-                    <option disabled hidden>Origin city</option>
+                    <option disabled selected>Select city</option>
                     @foreach (var city in ViewBag.Cities)
                     {
                         <option value="@city.Id">@city.Name</option>
@@ -21,11 +21,13 @@
                 </select>
             </div>
             <div class="col-lg-offset-1 col-lg-5">
-                <label for="select-place-type">Select place type</label>
-                <select id="select`place-type" class="form-control" name="placeType">
-                    <option value="HOTEL">Hotel</option>
-                    <option value="SPA">Spa</option>
-                    <option value="PARK">Park</option>
+                <label for="select-place-type">Place type</label>
+                <select id="select-place-type" class="form-control" name="placeType">
+                    <option value="" disabled selected>Select place</option>
+                    @foreach (var type in ViewBag.Types)
+                    {
+                        <option value="@type.Value">@type.Name</option>
+                    }
                 </select>
             </div>
         </div>
@@ -34,5 +36,10 @@
                 <button type="submit" class="btn btn-primary btn-lg btn-block">Search</button>
             </div>
         </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#select-place-type').selectpicker();
+            });
+        </script>
     }
 </div>
