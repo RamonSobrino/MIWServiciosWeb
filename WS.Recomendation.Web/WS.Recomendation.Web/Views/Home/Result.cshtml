@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "Result";
+}
+
+
+<div class="jumbotron">
+    <div class="row text-center">
+        <h2>Search results</h2>
+    </div>
+    <div class="row">
+        @foreach (var city in ViewBag.result)
+        {
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">@city.cityName</h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-bordered">
+                        <caption><h4>5 days forecast</h4></caption>
+                        <thead>
+                            <tr>
+                                <th></th>
+                                @for (int i = 0; i < city.weather5Days.Count; i++)
+                                {
+                                    <th>@DateTime.Now.AddDays(i + 1).GetDateTimeFormats()[0]</th>
+                                }
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>Description</th>
+                                @foreach (var weather in city.weather5Days)
+                                {
+                                    <td>@weather.Description</td>
+                                }
+                            </tr>
+                            <tr>
+                                <th>Temperature</th>
+                                @foreach (var weather in city.weather5Days)
+                                {
+                                    <td>@weather.Temperature</td>
+                                }
+                            </tr>
+                            <tr>
+                                <th>Humidity</th>
+                                @foreach (var weather in city.weather5Days)
+                                {
+                                    <td>@weather.Humidity</td>
+                                }
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        }
+    </div>
+</div>

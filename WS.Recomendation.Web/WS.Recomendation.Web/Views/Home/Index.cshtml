@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<div class="jumbotron">
+    @using (Html.BeginForm("Search", "Home", FormMethod.Post))
+    {
+        <div class="row text-center">
+            <h2>Find recommendations close to you</h2>
+        </div>
+        <div class="row">
+            <div class="col-lg-offset-1 col-lg-5">
+                <label for="select-city">Origin city</label>
+                <select id="select-city" class="form-control" name="cityId">
+                    <option disabled hidden>Origin city</option>
+                    @foreach (var city in ViewBag.Cities)
+                    {
+                        <option value="@city.Id">@city.Name</option>
+                    }
+                </select>
+            </div>
+            <div class="col-lg-offset-1 col-lg-5">
+                <label for="select-place-type">Select place type</label>
+                <select id="select`place-type" class="form-control" name="placeType">
+                    <option value="HOTEL">Hotel</option>
+                    <option value="SPA">Spa</option>
+                    <option value="PARK">Park</option>
+                </select>
+            </div>
+        </div>
+        <div class="row margin-top">
+            <div class="col-lg-offset-4 col-lg-4">
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Search</button>
+            </div>
+        </div>
+    }
+</div>
