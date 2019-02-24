@@ -18,9 +18,9 @@ namespace WS.Recomendation.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Search(string cityId, string placeType)
+        public ActionResult Search(string cityId, string[] placeType)
         {
-            ViewBag.result = service.GetResult(cityId, placeType);
+            ViewBag.result = service.GetResult(cityId, placeType[0]);
             return View("Result");
         }
 
