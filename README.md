@@ -16,3 +16,4 @@
 * Servicio de autenticación de usuarios
 * URL: POST http://156.35.98.19:9093/WS.Recomendation.Authentication/User/login
 * URL: POST http://156.35.98.19:9093/WS.Recomendation.Authentication/User/register
+* URL: POST http://156.35.98.19:9093/WS.Recomendation.Authentication/FavCities
