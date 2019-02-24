@@ -11,7 +11,7 @@ namespace WS.Recomendation.Web.Service
 {
     public class CitiesService
     {
-        private static string FORECAST_ENDPOINT = "http://localhost:8080/WS.Recomendation/restws/rs";
+        private static string FORECAST_ENDPOINT = "http://156.35.95.51:8082/WS.Recomendation/restws/rs";
 
         private IRestClient restClient;
 
