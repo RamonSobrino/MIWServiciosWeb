@@ -13,7 +13,7 @@
             <div class="col-lg-offset-1 col-lg-5">
                 <label for="select-city">Origin city</label>
                 <select id="select-city" class="form-control" name="cityId">
-                    <option disabled selected>Select city</option>
+                    <option disabled selected hidden>Select city</option>
                     @foreach (var city in ViewBag.Cities)
                     {
                         <option value="@city.Id">@city.Name</option>
@@ -23,7 +23,7 @@
             <div class="col-lg-offset-1 col-lg-5">
                 <label for="select-place-type">Place type</label>
                 <select id="select-place-type" class="form-control" name="placeType">
-                    <option value="" disabled selected>Select place</option>
+                    <option value=""disabled selected hidden>Select place</option>
                     @foreach (var type in ViewBag.Types)
                     {
                         <option value="@type.Value">@type.Name</option>

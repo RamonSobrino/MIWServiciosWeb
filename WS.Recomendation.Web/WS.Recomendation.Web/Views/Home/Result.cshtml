@@ -50,28 +50,28 @@
                             </tr>
                         </tbody>
                     </table>
-                    <button class="btn btn-primary" 
-                            type="button" 
-                            data-toggle="collapse" 
-                            data-target="#collapse_@city.cityName" 
-                            aria-expanded="false" 
+                    <button class="btn btn-primary places_button"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target="#collapse_@city.cityName"
+                            aria-expanded="false"
                             aria-controls="collapse_@city.cityName">
                         Places
                     </button>
-                    <div class="collapse"
+                    <div class="collapse places"
                          id="collapse_@city.cityName">
 
                         @foreach (var place in city.places)
                         {
-                            <div>
-                                <article class="col-lg-offset-1 col-lg-5">
-                                    <h4>@place.name ( @place.rating )</h4>
-                                    <span>@place.address</span>
-                                </article>
+                            <div class="panel panel-default">
+                                <div class="panel-heading"><h4>@place.name ( @place.rating <span class="glyphicon glyphicon-star" aria-hidden="true"></span>)</h4></div>
+                                <div class="panel-body">
+                                    @place.address
+                                </div>
                             </div>
-                          }                           
-                     </div>
-                 </div>
+                        }
+                    </div>
+                </div>
             </div>
         }
     </div>
