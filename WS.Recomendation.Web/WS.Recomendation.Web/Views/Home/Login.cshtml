@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<div class="jumbotron">
+    @using (Html.BeginForm("PostLogin", "Home", FormMethod.Post))
+    {
+        <div class="row text-center">
+            <h2>Find recommendations close to you</h2>
+        </div>
+        <div class="row">
+            <div class="col-lg-offset-1 col-lg-5">
+                <label for="input-name">Name</label>
+                <input id="input-name" class="form-control" name="name" required/>
+                
+            </div>
+            <div class="col-lg-offset-1 col-lg-5">
+                <label for="input-password">Password</label>
+                <input id="input-password" class="form-control" name="password" required />
+
+            </div>
+        </div>
+        <div class="row margin-top">
+            <div class="col-lg-offset-4 col-lg-4">
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
+            </div>
+        </div>
+    }
+</div>

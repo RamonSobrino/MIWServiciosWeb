@@ -11,16 +11,16 @@ namespace WS.Recomendation.Authentication.FavCitiesServices
     {
         private DataServiceSoapClient dataService = new DataServiceSoapClient("DataServiceSoap", "http://156.35.98.19:9091/WS.Recomendation.Data/DataService.asmx");
 
-        public bool AddFavCities(string token, FavCities favCities)
+        public bool AddFavCities(string token, int city)
         {
             var userService = new UserService();
             var user = userService.Authenticate(token);
-            if (user!=null && user.Id == favCities.UserId)
+            if (user!=null)
             {
                 var cities = dataService.GetAllCities();
-                if(cities.Any(c => c.Id == favCities.OriginCityId))
+                if(cities.Any(c => c.Id == city))
                 {
-                    dataService.AddFavCities(favCities);
+                    dataService.AddFavCities(new FavCities { UserId = user.Id, OriginCityId= city});
                     return true;
                 }
                 else

@@ -12,13 +12,22 @@ namespace WS.Recomendation.Web.Service
     public class CitiesService
     {
         private static string FORECAST_ENDPOINT = "http://156.35.95.51:8082/WS.Recomendation/restws/rs";
+        private static string AUTHENTICATION_LOGIN_ENDPOINT = "http://156.35.98.19:9093/WS.Recomendation.Authentication/User/login";
+        private static string AUTHENTICATION_REGISTER_ENDPOINT = "http://156.35.98.19:9093/WS.Recomendation.Authentication/User/register";
+
 
         private IRestClient restClient;
+        private IRestClient restClientLogin;
+        private IRestClient restClientRegister;
 
         public CitiesService()
         {
             restClient = new RestClient(FORECAST_ENDPOINT);
             restClient.AddHandler("application/json", new DynamicJsonDeserializer());
+            restClientLogin = new RestClient(AUTHENTICATION_LOGIN_ENDPOINT);
+            restClientLogin.AddHandler("application/json", new DynamicJsonDeserializer());
+            restClientRegister = new RestClient(AUTHENTICATION_REGISTER_ENDPOINT);
+            restClientRegister.AddHandler("application/json", new DynamicJsonDeserializer());
         }
 
         public IEnumerable<PlaceType> GetTypes()
@@ -38,7 +47,7 @@ namespace WS.Recomendation.Web.Service
             DataServiceSoapClient dataService = new DataServiceSoapClient("DataServiceSoap", "http://156.35.98.19:9091/WS.Recomendation.Data/DataService.asmx");
             return dataService.GetAllCities();
         }
-        
+
         public dynamic GetResult(string originCityId, string type)
         {
             var request = new RestRequest(Method.GET);
@@ -46,6 +55,34 @@ namespace WS.Recomendation.Web.Service
             request.AddQueryParameter("type", type);
             request.RequestFormat = DataFormat.Json;
             return restClient.Execute<dynamic>(request).Data;
+        }
+
+        public dynamic PostLogin(string name, string password)
+        {
+            var request = new RestRequest(Method.POST);
+            request.RequestFormat = DataFormat.Json;
+            Object transferir = new
+            {
+                Name = name,
+                Password = password
+            };
+            request.AddJsonBody(transferir);
+            request.AddHeader("Content-Type","application/json");
+            var respuesta = restClientLogin.Execute<dynamic>(request);
+
+            if(respuesta.StatusCode == System.Net.HttpStatusCode.OK) { 
+                Object dev = new
+                {
+                    Name = name,
+                    Token = respuesta.Content
+                };
+                return dev;
+
+            }
+            else
+            {
+                return null;
+            }
         }
 
     }

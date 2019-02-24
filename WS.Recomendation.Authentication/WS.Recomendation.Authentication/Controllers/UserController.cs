@@ -84,11 +84,11 @@ namespace WS.Recomendation.Authentication.Controllers
         // POST: User/login
         [HttpPost]
         [Route("FavCities/")]
-        public IHttpActionResult PostFavCities(FavCities favCities)
+        public IHttpActionResult PostFavCities([FromUri]Int32 ciudad)
         {
             var  favCitiesService = new FavCitiesService();
             var authHeader = HttpContext.Current.Request.Headers.Get("Authorization");
-            if (favCitiesService.AddFavCities(authHeader, favCities))
+            if (favCitiesService.AddFavCities(authHeader, ciudad))
             {
                 return Ok(authHeader);
             }

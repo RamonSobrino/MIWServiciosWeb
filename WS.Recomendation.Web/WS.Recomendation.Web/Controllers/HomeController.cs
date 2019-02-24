@@ -17,11 +17,33 @@ namespace WS.Recomendation.Web.Controllers
             return View();
         }
 
+        public ActionResult Login()
+        {
+            return View("Login");
+        }
+
         [HttpPost]
         public ActionResult Search(string cityId, string[] placeType)
         {
             ViewBag.result = service.GetResult(cityId, placeType[0]);
             return View("Result");
+        }
+
+
+
+        [HttpPost]
+        public ActionResult PostLogin(string name, string password)
+        {
+            var respuesta = service.PostLogin(name,password);
+            ViewBag.Cities = service.GetCities();
+            ViewBag.Types = service.GetTypes();
+            if (respuesta != null)
+            {
+                ViewBag.token = respuesta.Token;
+                ViewBag.name = respuesta.Name;
+            }
+
+            return View("Index");
         }
 
     }

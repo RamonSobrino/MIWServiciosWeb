@@ -9,6 +9,6 @@ namespace WS.Recomendation.Authentication.FavCitiesServices
 {
     public interface IFavCitiesServices
     {
-        Boolean AddFavCities(string token, FavCities favCities);
+        Boolean AddFavCities(string token, int city);
     }
 }
