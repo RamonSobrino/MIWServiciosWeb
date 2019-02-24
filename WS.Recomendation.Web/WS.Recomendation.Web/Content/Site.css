@@ -26,3 +26,12 @@ textarea {
 .margin-top {
     margin-top: 20px;
 }
+
+.places {
+    max-height: 400px;
+    overflow: auto;
+}
+
+.places_button {
+    margin-bottom: 20px;
+}
