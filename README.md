@@ -1,5 +1,9 @@
 # MIWServiciosWeb
 ## Servicios
+### WebServer
+* Servidor principal
+* URL: http://156.35.95.51:8082/WS.Recomendation/restws/rs
+
 ### DataService
 * Servicio de datos que se conecta con la base de datos
 * URL: http://156.35.98.19:9091/WS.Recomendation.Data/DataService.asmx
