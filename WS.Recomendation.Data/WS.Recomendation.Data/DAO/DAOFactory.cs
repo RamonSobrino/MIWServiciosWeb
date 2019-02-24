@@ -26,6 +26,15 @@ namespace WS.Recomendation.Data.DAO
             get { return new DistanceDAO(_context); }
         }
 
+        public IUserDAO UserDAO
+        {
+            get { return new UserDAO(_context); }
+        }
+
+        public IFavCitiesDAO FavCitiesDAO
+        {
+            get { return new FavCitiesDAO(_context); }
+        }
 
         public void Dispose() { _context.Dispose(); }
     }

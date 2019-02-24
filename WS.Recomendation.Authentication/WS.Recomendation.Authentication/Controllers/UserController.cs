@@ -1,33 +1,28 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
+using System.Net;
+using System.Net.Http;
+using System.Web;
+using System.Web.Http;
+using WS.Recomendation.Authentication.FavCitiesServices;
+using WS.Recomendation.Authentication.Models;
+using WS.Recomendation.Authentication.ServiceData;
+using WS.Recomendation.Authentication.UserServices;
 
 namespace WS.Recomendation.Authentication.Controllers
 {
-    [Route("[controller]")]
-    [ApiController]
-    public class UserController : ControllerBase
+    public class UserController : ApiController
     {
-        private IUserService _userService;
-
-        public UserController(IUserService userService)
-        {
-            _userService = userService;
-        }
-
+        
         // GET: api/User
-        [HttpGet]
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
         }
 
         // GET: api/User/5
-        [HttpGet("{id}", Name = "Get")]
         public string Get(int id)
         {
             return "value";
@@ -35,12 +30,16 @@ namespace WS.Recomendation.Authentication.Controllers
 
         // POST: User/login
         [HttpPost]
-        [Route("login/")]
-        public IActionResult Post(User user)
+        [Route("User/login/")]
+        public IHttpActionResult Post(User user)
         {
-            var transferir = new Token{  Name = user.Name,
-                                    Password = user.Password,
-                                    Time = TimeZone.CurrentTimeZone.ToLocalTime(DateTime.Now).AddMinutes(30) };
+            IUserService _userService = new UserService();
+            var transferir = new Token
+            {
+                Name = user.Name,
+                Password = user.Password,
+                Time = TimeZone.CurrentTimeZone.ToLocalTime(DateTime.Now).AddMinutes(30)
+            };
 
             String resultado = JsonConvert.SerializeObject(transferir);
             Encripter encripter = new Encripter();
@@ -58,10 +57,12 @@ namespace WS.Recomendation.Authentication.Controllers
 
         // POST: User/login
         [HttpPost]
-        [Route("register/")]
-        public IActionResult PostReg(User user)
+        [Route("User/register/")]
+        public IHttpActionResult PostRegister(User user)
         {
-            if (_userService.AddUser(user)) { 
+            IUserService _userService = new UserService();
+            if (_userService.AddUser(user))
+            {
                 var transferir = new Token
                 {
                     Name = user.Name,
@@ -72,20 +73,42 @@ namespace WS.Recomendation.Authentication.Controllers
                 Encripter encripter = new Encripter();
                 String token = encripter.Encripta(resultado);
                 return Ok(token);
-            }else{
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
+
+        // POST: User/login
+        [HttpPost]
+        [Route("FavCities/")]
+        public IHttpActionResult PostFavCities(FavCities favCities)
+        {
+            var  favCitiesService = new FavCitiesService();
+            var authHeader = HttpContext.Current.Request.Headers.Get("Authorization");
+            if (favCitiesService.AddFavCities(authHeader, favCities))
+            {
+                return Ok(authHeader);
+            }
+            else
+            {
                 return BadRequest();
             }
         }
 
         // PUT: api/User/5
         [HttpPut]
-        public IActionResult Put( [FromBody] User value)
+        [Route("User/")]
+        public IHttpActionResult Put([FromBody] User value)
         {
+            IUserService _userService = new UserService();
+            var authHeader = HttpContext.Current.Request.Headers.Get("Authorization");
+            if (_userService.Authenticate(authHeader) != null)
+            {
 
-            var authHeader = HttpContext.Request.Headers.FirstOrDefault(hed => hed.Key.Equals("Authorization")).Value;
-            if (_userService.Authenticate(authHeader)!=default) {
-
-               if(_userService.ModifyUser(authHeader, value))
+                if (_userService.ModifyUser(authHeader, value))
                 {
                     return Ok(authHeader);
                 }
@@ -95,13 +118,14 @@ namespace WS.Recomendation.Authentication.Controllers
                 }
 
             }
-            else {
+            else
+            {
                 return BadRequest();
             }
         }
 
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
+
+        // DELETE: api/User/5
         public void Delete(int id)
         {
         }

@@ -11,7 +11,7 @@ namespace WS.Recomendation.Authentication
     public class Encripter
     {
         public byte[] Clave = Encoding.ASCII.GetBytes("MIW-ServiciosWeb7890123456789012");
-        public byte[] IV =  Encoding.ASCII.GetBytes("Devjoker7.37hAES");
+        public byte[] IV = Encoding.ASCII.GetBytes("Devjoker7.37hAES");
 
         public string Encripta(string Cadena)
         {
@@ -58,6 +58,5 @@ namespace WS.Recomendation.Authentication
             RandomNumberGenerator.Create().GetBytes(result);
             return result;
         }
-
     }
 }

@@ -48,5 +48,69 @@ namespace WS.Recomendation.Data
             }
         }
 
+
+        [WebMethod]
+        public User[] GetAllUsers()
+        {
+            using (DAOFactory factory = new DAOFactory())
+            {
+                return factory.UserDAO.All().ToArray();
+            }
+        }
+
+        [WebMethod]
+        public FavCities[] GetAllFavCities()
+        {
+            using (DAOFactory factory = new DAOFactory())
+            {
+                return factory.FavCitiesDAO.All().ToArray();
+            }
+        }
+
+
+        [WebMethod]
+        public Boolean ExistUser(string name, string password)
+        {
+            using (DAOFactory factory = new DAOFactory())
+            {
+                return factory.UserDAO.All().Any(user => (user.Name.Equals(name)&&user.Password.Equals(password)));
+            }
+        }
+
+        [WebMethod]
+        public void AddUser(User user)
+        {
+            using (DAOFactory factory = new DAOFactory())
+            {
+                factory.UserDAO.Add(user);
+            }
+        }
+
+        [WebMethod]
+        public void AddFavCities(FavCities favCities)
+        {
+            using (DAOFactory factory = new DAOFactory())
+            {
+                factory.FavCitiesDAO.Add(favCities);
+            }
+        }
+
+        [WebMethod]
+        public Boolean UpdateUser(User user)
+        {
+            using (DAOFactory factory = new DAOFactory())
+            {
+                return factory.UserDAO.Update(user);
+            }
+        }
+
+        [WebMethod]
+        public User GetUserByName(string name)
+        {
+            using (DAOFactory factory = new DAOFactory())
+            {
+                return factory.UserDAO.All().First(user => (user.Name.Equals(name)));
+            }
+        }
     }
 }

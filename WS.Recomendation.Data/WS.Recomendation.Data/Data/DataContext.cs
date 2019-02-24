@@ -12,6 +12,9 @@ namespace WS.Recomendation.Data.Data
         public DbSet<City> Cities { get; set; }
         public DbSet<Distance> DistancesInKm { get; set; }
 
+        public DbSet<User> Users { get; set; }
+        public DbSet<FavCities> FavCities { get; set; }
+
         public DataContext()
         {
             Database.SetInitializer(new DataInitializer());

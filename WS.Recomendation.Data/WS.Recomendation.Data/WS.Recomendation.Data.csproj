@@ -117,10 +117,14 @@
     <Compile Include="DAO\DAOFactory.cs" />
     <Compile Include="DAO\ICityDAO.cs" />
     <Compile Include="DAO\IDistanceDAO.cs" />
+    <Compile Include="DAO\IFavCitiesDAO.cs" />
     <Compile Include="DAO\IGenericDAO.cs" />
     <Compile Include="DAO\Impl\CityDAO.cs" />
     <Compile Include="DAO\Impl\DistanceDAO.cs" />
+    <Compile Include="DAO\Impl\FavCitiesDAO.cs" />
     <Compile Include="DAO\Impl\GenericDAO.cs" />
+    <Compile Include="DAO\Impl\UserDAO.cs" />
+    <Compile Include="DAO\IUserDAO.cs" />
     <Compile Include="DataService.asmx.cs">
       <DependentUpon>DataService.asmx</DependentUpon>
       <SubType>Component</SubType>
@@ -129,7 +133,9 @@
     <Compile Include="Data\DataInitializer.cs" />
     <Compile Include="Model\City.cs" />
     <Compile Include="Model\CityWeather.cs" />
+    <Compile Include="Model\FavCities.cs" />
     <Compile Include="Model\Distance.cs" />
+    <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
