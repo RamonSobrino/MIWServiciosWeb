@@ -9,7 +9,7 @@ namespace WS.Recomendation.Authentication.FavCitiesServices
 {
     public class FavCitiesService : IFavCitiesServices
     {
-        private DataServiceSoapClient dataService = new DataServiceSoapClient("DataServiceSoap", "http://localhost:9090/DataService.asmx");
+        private DataServiceSoapClient dataService = new DataServiceSoapClient("DataServiceSoap", "http://156.35.98.19:9091/WS.Recomendation.Data/DataService.asmx");
 
         public bool AddFavCities(string token, FavCities favCities)
         {

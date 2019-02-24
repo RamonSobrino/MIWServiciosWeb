@@ -84,6 +84,7 @@
   <ItemGroup>
     <None Include="Connected Services\ServiceData\configuration91.svcinfo" />
     <None Include="Connected Services\ServiceData\configuration.svcinfo" />
+    <None Include="Connected Services\ServiceData\DataService1.wsdl" />
     <None Include="Connected Services\ServiceData\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -153,7 +154,6 @@
     <Compile Include="UserServices\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\ServiceData\DataService.wsdl" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

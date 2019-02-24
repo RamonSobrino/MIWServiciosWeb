@@ -12,7 +12,7 @@ namespace WS.Recomendation.Authentication.UserServices
     {
         public UserService() { }
 
-        private DataServiceSoapClient dataService = new DataServiceSoapClient("DataServiceSoap", "http://localhost:9090/DataService.asmx");
+        private DataServiceSoapClient dataService = new DataServiceSoapClient("DataServiceSoap", "http://156.35.98.19:9091/WS.Recomendation.Data/DataService.asmx");
 
 
         public User Authenticate(string token)

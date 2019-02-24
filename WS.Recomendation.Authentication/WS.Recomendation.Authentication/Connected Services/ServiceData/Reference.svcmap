@@ -19,10 +19,10 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:9090/DataService.asmx?WSDL" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://156.35.98.19:9091/WS.Recomendation.Data/DataService.asmx?WSDL" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="DataService.wsdl" MetadataType="Wsdl" ID="64e8bfaf-d63b-4327-a3e7-fd688f0056de" SourceId="1" SourceUrl="http://localhost:9090/DataService.asmx?WSDL" />
+    <MetadataFile FileName="DataService1.wsdl" MetadataType="Wsdl" ID="0ca5baa3-d2fc-4670-9882-93ffdb443aba" SourceId="1" SourceUrl="http://156.35.98.19:9091/WS.Recomendation.Data/DataService.asmx?WSDL" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
