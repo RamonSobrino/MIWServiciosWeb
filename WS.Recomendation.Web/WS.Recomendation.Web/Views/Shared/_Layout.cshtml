@@ -21,8 +21,17 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Login", "Login", "Home")</li>
+                    @if (Session["Token"] == null)
+                    {
+                        <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Login", "Login", "Home")</li>
+                        <li>@Html.ActionLink("Register", "Register", "Home")</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Favoritos", "Favoritos", "Home")</li>
+                        <li>@Html.ActionLink("Cerrar Sesión", "CerrarSesion", "Home")</li>
+                    }
                 </ul>
             </div>
         </div>

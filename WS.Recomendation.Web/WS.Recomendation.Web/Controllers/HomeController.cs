@@ -22,6 +22,28 @@ namespace WS.Recomendation.Web.Controllers
             return View("Login");
         }
 
+        public ActionResult Register()
+        {
+            return View("Register");
+        }
+        public ActionResult Favoritos()
+        {
+            var pedro = Session["Token"];
+            Session["Token"] = pedro;
+            ViewBag.Cities = service.GetCities();
+            return View("Favoritos");
+        }
+
+        public ActionResult CerrarSesion()
+        {
+            Session["Token"] = null;
+            ViewBag.Cities = service.GetCities();
+            ViewBag.Types = service.GetTypes();
+
+            return View("Index");
+        }
+
+
         [HttpPost]
         public ActionResult Search(string cityId, string[] placeType)
         {
@@ -39,10 +61,31 @@ namespace WS.Recomendation.Web.Controllers
             ViewBag.Types = service.GetTypes();
             if (respuesta != null)
             {
-                ViewBag.token = respuesta.Token;
-                ViewBag.name = respuesta.Name;
-            }
+                Session["Token"] = respuesta.Token;
+                Session["Name"] = respuesta.Name;
 
+            }
+            return View("Index");
+        }
+
+
+        [HttpPost]
+        public ActionResult PostRegister(string name, string password)
+        {
+            var respuesta = service.PostRegister(name, password);
+            ViewBag.Cities = service.GetCities();
+            ViewBag.Types = service.GetTypes();
+            
+            return View("Index");
+        }
+
+        [HttpPost]
+        public ActionResult PostFavoritos(string cityId)
+        {
+            var token = Session["Token"] ;
+            ViewBag.Token = service.PostFavoritos(cityId,(String) token);
+            ViewBag.Cities = service.GetCities();
+            ViewBag.Types = service.GetTypes();
             return View("Index");
         }
 
