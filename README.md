@@ -1,6 +1,11 @@
 # MIWServiciosWeb
 ## Servicios
-### WebServer
+
+### Website
+* Página web
+* URL: http://156.35.98.19:9094/WS.Recomendation.Web/
+
+### Server
 * Servidor principal
 * URL: http://156.35.95.51:8082/WS.Recomendation/restws/rs
 
