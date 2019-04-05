@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "RecomendationWSService", targetNamespace = "http://webservices.places.recomendation.ws/", wsdlLocation = "http://156.35.95.51:8080/WS.Recomendation.Places/soapws/v1?wsdl")
+@WebServiceClient(name = "RecomendationWSService", targetNamespace = "http://webservices.places.recomendation.ws/", wsdlLocation = "http://localhost:8080/WS.Recomendation.Places/soapws/v1?wsdl")
 public class RecomendationWSService
     extends Service
 {
@@ -30,7 +30,7 @@ public class RecomendationWSService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://156.35.95.51:8080/WS.Recomendation.Places/soapws/v1?wsdl");
+            url = new URL("http://localhost:8080/WS.Recomendation.Places/soapws/v1?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

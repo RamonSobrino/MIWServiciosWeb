@@ -15,6 +15,14 @@ public class PlaceResult {
 		return geometry;
 	}
 
+	
+	
+    public void setGeometry(Geometry geometry) {
+	    this.geometry = geometry;
+	}
+
+
+
     @XmlElement
     public String getName() {
 	return name;

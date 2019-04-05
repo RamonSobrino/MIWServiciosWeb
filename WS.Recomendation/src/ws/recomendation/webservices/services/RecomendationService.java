@@ -23,7 +23,8 @@ public class RecomendationService {
 	    .getRecomendationWSPort();
 
     public Place parceRecomendation(Recomendation r) {
-	return new Place(r.getPlace(), r.getAddress(), r.getRating());
+	return new Place(r.getPlace(), r.getAddress(), r.getRating(),
+		r.getLat(), r.getLng());
     }
 
     public List<CityRecomendation> getRecommendations(int originCityId,
@@ -63,8 +64,7 @@ public class RecomendationService {
 	    recomendations = recomendationWS.find(request);
 	    for (Recomendation r : recomendations) {
 		cityRecomendation.getPlaces()
-			.add(new Place(r.getPlace(), r.getAddress(),
-				r.getRating()));
+			.add(parceRecomendation(r));
 	    }
 	    result.add(cityRecomendation);
 	}

@@ -43,6 +43,8 @@ public class RecomendationGooglePlaces implements RecomendationService {
 	    recomendation.setPlace(place.getName());
 	    recomendation.setAddress(place.getVicinity());
 	    recomendation.setRating(place.getRating());
+	    recomendation.setLat(place.getGeometry().getLocation().getLat());
+	    recomendation.setLng(place.getGeometry().getLocation().getLng());
 	    recomendations.add(recomendation);
 	}
 	return recomendations;

@@ -84,6 +84,28 @@ public class CitiesService
         return super.getPort(new QName("http://WS.Recomendation.Cities/", "CitiesServiceSoap"), CitiesServiceSoap.class, features);
     }
 
+    /**
+     * 
+     * @return
+     *     returns CitiesServiceSoap
+     */
+    @WebEndpoint(name = "CitiesServiceSoap12")
+    public CitiesServiceSoap getCitiesServiceSoap12() {
+        return super.getPort(new QName("http://WS.Recomendation.Cities/", "CitiesServiceSoap12"), CitiesServiceSoap.class);
+    }
+
+    /**
+     * 
+     * @param features
+     *     A list of {@link javax.xml.ws.WebServiceFeature} to configure on the proxy.  Supported features not in the <code>features</code> parameter will have their default values.
+     * @return
+     *     returns CitiesServiceSoap
+     */
+    @WebEndpoint(name = "CitiesServiceSoap12")
+    public CitiesServiceSoap getCitiesServiceSoap12(WebServiceFeature... features) {
+        return super.getPort(new QName("http://WS.Recomendation.Cities/", "CitiesServiceSoap12"), CitiesServiceSoap.class, features);
+    }
+
     private static URL __getWsdlLocation() {
         if (CITIESSERVICE_EXCEPTION!= null) {
             throw CITIESSERVICE_EXCEPTION;
