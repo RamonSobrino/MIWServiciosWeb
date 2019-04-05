@@ -8,6 +8,12 @@ public class PlaceResult {
     private String name;
     private String vicinity;
     private double rating;
+	private Geometry geometry;
+	
+	@XmlElement
+	public Geometry getGeometry(){
+		return geometry;
+	}
 
     @XmlElement
     public String getName() {
@@ -41,7 +47,9 @@ public class PlaceResult {
 	return "\nPlaceResult ["
 		+ "\n\tname=" + name 
 		+ "\n\t,vicinity=" + vicinity
-		+ "\n\t,rating=" + rating + "]";
+		+ "\n\t,rating=" + rating 
+		+ "\n\t,geometry=" + geometry 
+		+ "]";
     }
     
     
