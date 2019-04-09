@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Recomendations</string>
+    <string name="cities">Cities</string>
+    <string name="search">Search</string>
+    <string name="drawer_close">Close</string>
+    <string name="drawer_open">Open</string>
+    <string name="city">City</string>
+    <string name="recomendationType">Recomendarion type</string>
 </resources>
