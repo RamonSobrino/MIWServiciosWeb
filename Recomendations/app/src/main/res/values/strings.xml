@@ -6,4 +6,7 @@
     <string name="drawer_open">Open</string>
     <string name="city">City</string>
     <string name="recomendationType">Recomendarion type</string>
+    <string name="add_favorite">Favourite</string>
+    <string name="view_details">Details</string>
+    <string name="search_title">Search for recommendations close to you</string>
 </resources>

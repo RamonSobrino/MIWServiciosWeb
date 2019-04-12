@@ -22,10 +22,14 @@ class FragmentCities : Fragment() {
     companion object {
         private const val ARG_CITIES = "FragmentCities:cities"
 
-        fun newInstance(cities: ArrayList<City>): FragmentCities {
+        fun newInstance(cities: List<CityModel>?): FragmentCities {
             val fragemt = FragmentCities()
             val args = Bundle()
-            args.putSerializable(ARG_CITIES, cities)
+            if (cities != null) {
+                args.putSerializable(ARG_CITIES, cities as ArrayList<CityModel>)
+            } else {
+                args.putSerializable(ARG_CITIES, null)
+            }
             fragemt.arguments = args
             return fragemt
         }
@@ -35,20 +39,13 @@ class FragmentCities : Fragment() {
     }
 
     private lateinit var listener: OnCitiesFragmentInteractionListener
-    private lateinit var cities: ArrayList<City>
+    private lateinit var cities: List<CityModel>
+    private val favouriteDb: FavouriteDb = FavouriteDb()
+    private var isFavourite = true
 
 
-    override fun onCreateView(
-        inflater: LayoutInflater
-        , container: ViewGroup?
-        , savedInstanceState: Bundle?
-    )
-            : View? {
-        return inflater.inflate(
-            R.layout.fragment_cities
-            , container
-            , false
-        )
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_cities, container, false)
     }
 
     override fun onAttach(context: Context) {
@@ -63,36 +60,23 @@ class FragmentCities : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         with(arguments!!) {
-            cities = getSerializable(ARG_CITIES) as ArrayList<City>
+            cities = when (getSerializable(ARG_CITIES)) {
+                null -> {
+                    isFavourite = true
+                    favouriteDb.getAllFavourites()
+                }
+                else -> {
+                    isFavourite = false
+                    getSerializable(ARG_CITIES) as List<CityModel>
+                }
+            }
         }
         initialize()
     }
 
     private fun initialize() {
         cities_list.layoutManager = LinearLayoutManager(context)
-        cities_list.adapter = CityAdapter(cities) { }
-
-        var favourites = FavouriteDb().getAllFavourites()
-        Log.d("FAVS", favourites.toString())
-
-        val cityModel1 = CityModel(
-            1,
-            "Oviedo",
-            43.36029,
-            -5.84476,
-            listOf(PlaceModel("Suchi Go", "Calle de Campomanes, 6, 33008 Oviedo, Asturias", 4.2, 43.359003, -5.845461)),
-            listOf(WeatherModel(15.0, 80, "Rain"))
-        )
-        FavouriteDb().saveFavourite(cityModel1)
-        favourites = FavouriteDb().getAllFavourites()
-        Log.d("FAVS", favourites.toString())
-        val cityModel2 = CityModel(2, "Madrid", 40.416775, -3.703790, listOf(), listOf(WeatherModel(15.0, 80, "Rain")))
-        FavouriteDb().saveFavourite(cityModel2)
-        favourites = FavouriteDb().getAllFavourites()
-        Log.d("FAVS", favourites.toString())
-        val cityModelUpdate = favourites[0].copy(weather = listOf(WeatherModel(15.0, 80, "Rain")))
-        favourites = FavouriteDb().getAllFavourites()
-        Log.d("FAVS", favourites.toString())
+        cities_list.adapter = CityAdapter(cities, isFavourite) { }
     }
 
 }

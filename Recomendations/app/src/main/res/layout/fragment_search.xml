@@ -14,25 +14,35 @@
             android:id="@+id/search_txt_city"
             android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:text="@string/city"
-            android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/search_txt_type"/>
+            android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/search_txt_type"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp" android:hint="@string/city"
+    />
     <EditText
             android:layout_width="395dp"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:ems="10"
             android:id="@+id/search_txt_type"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:text="@string/recomendationType" android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/button"/>
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/search_button" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" android:hint="@string/recomendationType"/>
     <Button
             android:text="Button"
             android:layout_width="395dp"
             android:layout_height="58dp"
-            android:id="@+id/button" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            android:id="@+id/search_button" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
             app:layout_constraintHorizontal_bias="0.0" android:layout_marginBottom="188dp"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+            android:layout_width="338dp"
+            android:layout_height="64dp"
+            android:id="@+id/textView" app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/search_txt_city" android:text="@string/search_title"
+            android:textAlignment="center" android:textSize="24sp" android:hyphenationFrequency="none"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
