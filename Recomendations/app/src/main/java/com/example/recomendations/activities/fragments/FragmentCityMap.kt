@@ -39,6 +39,7 @@ class FragmentCityMap : SupportMapFragment(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        getMapAsync(this)
         return inflater.inflate(
             R.layout.fragment_city_map
             , container
@@ -64,7 +65,6 @@ class FragmentCityMap : SupportMapFragment(), OnMapReadyCallback {
     }
 
     private fun initialize() {
-        getMapAsync(this)
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
