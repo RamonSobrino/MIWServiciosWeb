@@ -1,21 +1,18 @@
-package com.example.recomendations
+package com.example.recomendations.activities.fragments
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.recomendations.R
+import com.example.recomendations.activities.adapters.CityAdapter
 import com.example.recomendations.data.db.FavouriteDb
-import com.example.recomendations.data.db.FavouritesDbHelper
 import com.example.recomendations.model.CityModel
-import com.example.recomendations.model.PlaceModel
-import com.example.recomendations.model.WeatherModel
 import kotlinx.android.synthetic.main.fragment_cities.*
-import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.toast
+import java.io.Serializable
 
 class FragmentCities : Fragment() {
 
@@ -26,7 +23,7 @@ class FragmentCities : Fragment() {
             val fragemt = FragmentCities()
             val args = Bundle()
             if (cities != null) {
-                args.putSerializable(ARG_CITIES, cities as ArrayList<CityModel>)
+                args.putSerializable(ARG_CITIES, cities as Serializable)
             } else {
                 args.putSerializable(ARG_CITIES, null)
             }
@@ -36,13 +33,13 @@ class FragmentCities : Fragment() {
     }
 
     interface OnCitiesFragmentInteractionListener {
+        fun onCitySelected(city: CityModel)
     }
 
     private lateinit var listener: OnCitiesFragmentInteractionListener
     private lateinit var cities: List<CityModel>
     private val favouriteDb: FavouriteDb = FavouriteDb()
     private var isFavourite = true
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_cities, container, false)
@@ -76,7 +73,9 @@ class FragmentCities : Fragment() {
 
     private fun initialize() {
         cities_list.layoutManager = LinearLayoutManager(context)
-        cities_list.adapter = CityAdapter(cities, isFavourite) { }
+        cities_list.adapter = CityAdapter(cities, isFavourite) {
+            listener.onCitySelected(it)
+        }
     }
 
 }

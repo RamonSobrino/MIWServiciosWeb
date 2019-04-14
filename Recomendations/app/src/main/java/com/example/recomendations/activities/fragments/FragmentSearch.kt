@@ -1,4 +1,4 @@
-package com.example.recomendations
+package com.example.recomendations.activities.fragments
 
 import android.content.Context
 import android.os.Bundle
@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.recomendations.R
 
 class FragmentSearch : Fragment() {
 

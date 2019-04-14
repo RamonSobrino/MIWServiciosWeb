@@ -1,15 +1,17 @@
-package com.example.recomendations
+package com.example.recomendations.activities.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.cardview.widget.CardView
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import com.example.recomendations.R
 import com.example.recomendations.model.CityModel
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.card_city.view.*
 
-class CityAdapter(val cities: List<CityModel>, val isFavourite: Boolean, val itemClick: (CityModel) -> Unit) :
+class CityAdapter(
+    val cities: List<CityModel>,
+    val isFavourite: Boolean,
+    val selectedClick: (CityModel) -> Unit) :
     RecyclerView.Adapter<CityAdapter.ViewHolder>() {
 
     class ViewHolder(val cardView: CardView, val itemClick: (CityModel) -> Unit) : RecyclerView.ViewHolder(cardView) {
@@ -26,8 +28,7 @@ class CityAdapter(val cities: List<CityModel>, val isFavourite: Boolean, val ite
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.card_city, parent, false) as CardView
-
-        return ViewHolder(view, itemClick)
+        return ViewHolder(view, selectedClick)
     }
 
     override fun getItemCount() = cities.size
