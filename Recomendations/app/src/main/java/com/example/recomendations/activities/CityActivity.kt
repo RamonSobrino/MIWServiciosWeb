@@ -58,11 +58,13 @@ class CityActivity : AppCompatActivity()
     }
 
     private fun launchFragmentWeather() {
+        title = "${citySelected.name}: ${getString(R.string.weather)}"
         city_navigation.setCheckedItem(R.id.city_menu_weather)
         launchFragment(FragmentCityWeather.newInstance(citySelected))
     }
 
     private fun launchFragmentHome() {
+        title = "${citySelected.name}: ${getString(R.string.places)}"
         city_navigation.setCheckedItem(R.id.city_menu_home)
         launchFragment(FragmentCityDetail.newInstance(citySelected))
     }

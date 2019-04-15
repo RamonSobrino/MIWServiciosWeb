@@ -20,6 +20,7 @@ class CityAdapter(
             with(city) {
                 itemView.btn_add_favourite.isEnabled = !isFavourite
                 itemView.card_city_txt_name.text = name
+                itemView.card_city_txt_recomendations.text = places.size.toString()
                 itemView.setOnClickListener { itemClick(this) }
             }
         }

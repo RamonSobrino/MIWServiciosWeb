@@ -1,11 +1,11 @@
 <resources>
-    <string name="app_name">Recomendations</string>
+    <string name="app_name">Recommendations</string>
     <string name="cities">Cities</string>
     <string name="search">Search</string>
     <string name="drawer_close">Close</string>
     <string name="drawer_open">Open</string>
     <string name="city">City</string>
-    <string name="recomendationType">Recomendarion type</string>
+    <string name="recommendationType">Recommendation type</string>
     <string name="add_favorite">Favourite</string>
     <string name="view_details">Details</string>
     <string name="search_title">Search for recommendations close to you</string>
@@ -13,4 +13,9 @@
     <string name="showMap">Show map</string>
     <string name="showWeather">Show weather</string>
     <string name="title_activity_maps">Map</string>
+    <string name="recommendations">Recommendations</string>
+    <string name="temperature">Temperature</string>
+    <string name="humidity">Humidity</string>
+    <string name="places">Places</string>
+    <string name="weather">Weather</string>
 </resources>

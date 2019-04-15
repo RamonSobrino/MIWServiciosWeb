@@ -27,7 +27,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toTopOf="@+id/search_button" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp" android:hint="@string/recomendationType"/>
+            android:layout_marginStart="8dp" android:hint="@string/recommendationType"/>
     <Button
             android:text="Button"
             android:layout_width="395dp"

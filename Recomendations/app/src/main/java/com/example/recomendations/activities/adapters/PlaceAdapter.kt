@@ -19,6 +19,9 @@ class PlaceAdapter(
         fun bindPlace(element: PlaceModel) {
             with(element) {
                 itemView.card_place_txt_name.text = name
+                itemView.card_place_txt_direccion.text = address
+                itemView.card_place_rating.numStars = 5
+                itemView.card_place_rating.rating = rating.toFloat()
                 itemView.setOnClickListener { itemClick(this) }
             }
         }

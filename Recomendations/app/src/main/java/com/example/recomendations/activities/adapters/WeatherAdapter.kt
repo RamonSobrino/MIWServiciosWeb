@@ -19,6 +19,8 @@ class WeatherAdapter(
         fun bindElement(element: WeatherModel) {
             with(element) {
                 itemView.card_weather_txt_name.text = description
+                itemView.card_weather_txt_temperature.text = temperature.toString()
+                itemView.card_weather_txt_humidity.text = humidity.toString()
                 itemView.setOnClickListener { itemClick(this) }
             }
         }
