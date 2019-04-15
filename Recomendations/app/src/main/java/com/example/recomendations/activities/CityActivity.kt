@@ -6,14 +6,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.recomendations.R
 import com.example.recomendations.activities.fragments.FragmentCityDetail
-import com.example.recomendations.activities.fragments.FragmentCityMap
 import com.example.recomendations.activities.fragments.FragmentCityWeather
 import com.example.recomendations.model.CityModel
 import kotlinx.android.synthetic.main.activity_city.*
+import org.jetbrains.anko.startActivity
 
 class CityActivity : AppCompatActivity()
     , FragmentCityDetail.OnCityDetailFragmentInteractionListener
-    , FragmentCityMap.OnCityMapFragmentInteractionListener
     , FragmentCityWeather.OnCityWeatherFragmentInteractionListener {
 
     companion object {
@@ -49,12 +48,13 @@ class CityActivity : AppCompatActivity()
             drawer_city.closeDrawers()
             true
         }
+        launchFragmentHome()
+    }
 
-        supportFragmentManager.beginTransaction().add(
-            city_container.id,
-            FragmentCityDetail.newInstance(citySelected)
-        ).commit()
-        city_navigation.setCheckedItem(R.id.city_menu_home)
+    private fun launchFragment(fragment: Fragment) {
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction.replace(city_container.id, fragment)
+        fragmentTransaction.commit()
     }
 
     private fun launchFragmentWeather() {
@@ -62,20 +62,15 @@ class CityActivity : AppCompatActivity()
         launchFragment(FragmentCityWeather.newInstance(citySelected))
     }
 
-    private fun launchFragmentMap() {
-        city_navigation.setCheckedItem(R.id.city_menu_map)
-        launchFragment(FragmentCityMap.newInstance(citySelected))
-    }
-
     private fun launchFragmentHome() {
         city_navigation.setCheckedItem(R.id.city_menu_home)
         launchFragment(FragmentCityDetail.newInstance(citySelected))
     }
 
-    private fun launchFragment(fragment: Fragment) {
-        val fragmentTransaction = supportFragmentManager.beginTransaction()
-        fragmentTransaction.replace(city_container.id, fragment)
-        fragmentTransaction.commit()
+    private fun launchFragmentMap() {
+        startActivity<MapsActivity>(
+            MapsActivity.CITY to citySelected
+        )
     }
 
 }
