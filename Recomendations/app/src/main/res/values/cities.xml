@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="Cities">
-
+        <item>Seleccione una ciudad</item>
         <item>Albacete</item>
         <item>Alicante</item>
         <item>Almería</item>

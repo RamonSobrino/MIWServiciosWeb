@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import com.example.recomendations.R
+import com.example.recomendations.data.server.RecomendationServer
 import kotlinx.android.synthetic.main.fragment_search.*
 
 class FragmentSearch : Fragment() {
@@ -48,8 +49,16 @@ class FragmentSearch : Fragment() {
 
 
     private fun initialize() {
+        search_button.setOnClickListener { onSubmit() }
+    }
+    private fun onSubmit() {
+        val ciudad =  spinnerCity.selectedItem.toString()
+        val tipo = spinnerReconType.selectedItem.toString()
 
+        val indiceCiudades = list_of_items.indexOf(ciudad)+1
 
+        val respuesta = RecomendationServer().requestRecomendationByCityIdAndType(indiceCiudades, tipo)
+        print(ciudad+tipo)
     }
 
 }

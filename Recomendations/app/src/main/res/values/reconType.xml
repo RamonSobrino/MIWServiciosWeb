@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="ReconType">
+        <item>Seleccione un lugar</item>
         <item>MUSEUM</item>
         <item>CASINO</item>
         <item>AQUARIUM</item>
