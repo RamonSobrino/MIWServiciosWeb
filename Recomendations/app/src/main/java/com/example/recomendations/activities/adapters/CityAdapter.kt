@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recomendations.R
+import com.example.recomendations.data.db.FavouriteDb
 import com.example.recomendations.model.CityModel
 import kotlinx.android.synthetic.main.card_city.view.*
 
@@ -22,6 +23,7 @@ class CityAdapter(
                 itemView.card_city_txt_name.text = name
                 itemView.card_city_txt_recomendations.text = places.size.toString()
                 itemView.setOnClickListener { itemClick(this) }
+                itemView.btn_add_favourite.setOnClickListener { FavouriteDb().saveFavourite(city) }
             }
         }
     }

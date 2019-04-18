@@ -71,10 +71,14 @@ class FragmentSearch : Fragment() {
             indiceCiudades = 0
         }
 
+        try {
+            val respuesta = RecomendationServer().requestRecomendationByCityIdAndType(indiceCiudades, tipo)
 
-        val respuesta = RecomendationServer().requestRecomendationByCityIdAndType(indiceCiudades, tipo)
+            listener.onSearchComplete(respuesta)
+        }catch (e: Exception  ){
 
-        listener.onSearchComplete(respuesta)
+        }
+
 
     }
 

@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity()
 
         principal_navigation.setNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.principal_menu_cities -> launchFragmentCities(cities_static)
+                R.id.principal_menu_cities -> launchFragmentCities(null)
                 R.id.principal_menu_search -> launchFragmentSearch()
             }
             drawer_principal.closeDrawers()
