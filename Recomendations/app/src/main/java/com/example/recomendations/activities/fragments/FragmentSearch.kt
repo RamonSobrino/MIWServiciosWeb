@@ -5,16 +5,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import com.example.recomendations.R
 import com.example.recomendations.data.server.RecomendationServer
+import com.example.recomendations.model.CityModel
 import kotlinx.android.synthetic.main.fragment_search.*
 
 class FragmentSearch : Fragment() {
 
     interface OnSearchFragmentInteractionListener {
-        fun onSearchComplete()
+        fun onSearchComplete(respuesta: List<CityModel>?)
     }
 
     private lateinit var listener: OnSearchFragmentInteractionListener
@@ -58,7 +58,9 @@ class FragmentSearch : Fragment() {
         val indiceCiudades = list_of_items.indexOf(ciudad)+1
 
         val respuesta = RecomendationServer().requestRecomendationByCityIdAndType(indiceCiudades, tipo)
-        print(ciudad+tipo)
+
+        listener.onSearchComplete(respuesta)
+
     }
 
 }

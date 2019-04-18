@@ -2,6 +2,7 @@ package com.example.recomendations.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.StrictMode
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.fragment.app.Fragment
 import com.example.recomendations.activities.fragments.FragmentCities
@@ -21,14 +22,18 @@ class MainActivity : AppCompatActivity()
         )
     }
 
-    override fun onSearchComplete() {
-        launchFragmentCities(null)
+    override fun onSearchComplete(respuesta: List<CityModel>?) {
+        launchFragmentCities(respuesta)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initialize()
+        val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
+
+        StrictMode.setThreadPolicy(policy)
     }
 
     private fun initialize() {
