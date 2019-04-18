@@ -52,10 +52,25 @@ class FragmentSearch : Fragment() {
         search_button.setOnClickListener { onSubmit() }
     }
     private fun onSubmit() {
-        val ciudad =  spinnerCity.selectedItem.toString()
-        val tipo = spinnerReconType.selectedItem.toString()
 
-        val indiceCiudades = list_of_items.indexOf(ciudad)+1
+
+        var ciudad =  spinnerCity.selectedItem.toString()
+        var tipo = spinnerReconType.selectedItem.toString()
+
+        if(ciudad.equals("Seleccione una ciudad")){
+            ciudad = "ninguna"
+        }
+
+        if(tipo.equals("Seleccione un lugar")) {
+            tipo = "ninguna"
+        }
+
+        var indiceCiudades = list_of_items.indexOf(ciudad)+1
+
+        if(ciudad.equals("Seleccione una ciudad")){
+            indiceCiudades = 0
+        }
+
 
         val respuesta = RecomendationServer().requestRecomendationByCityIdAndType(indiceCiudades, tipo)
 
