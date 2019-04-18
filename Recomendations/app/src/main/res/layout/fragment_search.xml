@@ -11,13 +11,17 @@
             android:layout_height="63dp"
             android:id="@+id/spinnerCity"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-            android:spinnerMode="dropdown" android:entries="@array/Cities"
-            app:layout_constraintHorizontal_bias="0.0" android:layout_marginBottom="8dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp"
+            android:spinnerMode="dropdown"
+            android:entries="@array/Cities"
+            app:layout_constraintHorizontal_bias="0.0"
+            android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toTopOf="@+id/spinnerReconType"
     />
     <Button
-            android:text="Buscar"
+            android:text="@string/search"
             android:layout_width="395dp"
             android:layout_height="58dp"
             android:id="@+id/search_button" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
@@ -29,18 +33,29 @@
     <TextView
             android:layout_width="338dp"
             android:layout_height="64dp"
-            android:id="@+id/textView" app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp" android:layout_marginTop="8dp"
+            android:id="@+id/textView"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintTop_toTopOf="parent"
             android:text="@string/search_title"
-            android:textAlignment="center" android:textSize="24sp" android:hyphenationFrequency="none"
-            android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/spinnerCity"/>
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:hyphenationFrequency="none"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/spinnerCity"/>
     <Spinner
             android:layout_width="395dp"
             android:layout_height="63dp"
             android:id="@+id/spinnerReconType"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/search_button"
-            android:spinnerMode="dropdown" android:entries="@array/ReconType"/>
+            android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/search_button"
+            android:spinnerMode="dropdown"
+            android:entries="@array/ReconType"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
